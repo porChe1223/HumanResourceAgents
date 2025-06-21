@@ -1,0 +1,62 @@
+name: CI
+
+# --- トリガー ---
+on:
+  push:
+    paths:
+      - "**"
+    branches:
+      - main
+      - develop
+      - "feat/**"
+
+  pull_request:
+    paths:
+      - "**"
+    branches: [main, develop]
+
+# --- ジョブ ---
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      # --- 依存関係のチェック ---
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+      - name: Create virtual environment with uv
+        working-directory: ./src
+        run: |
+          uv venv .venv
+
+      - name: Install dependencies
+        working-directory: ./src
+        run: |
+          uv add -r requirements.txt
+          uv pip list
+
+      # --- Lintチェック ---
+      - name: Lint check with ruff (agents, tools, helpers, main.py)
+        working-directory: ./src
+        run: |
+          uv run ruff check agents
+          uv run ruff check tools
+          uv run ruff check helpers
+          uv run ruff check main.py
+
+      # --- 型チェック ---
+      - name: Type check with ty (agents, tools, helpers, main.py)
+        working-directory: ./src
+        run: |
+          uv run ty check agents
+          uv run ty check tools
+          uv run ty check helpers
+          uv run ty check main.py

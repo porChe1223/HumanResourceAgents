@@ -1,0 +1,14 @@
+requests
+beautifulsoup4
+langchain
+langchain-core
+langchain-openai
+langchain-google-genai
+langchain-tavily
+langgraph
+langgraph-supervisor
+tenacity
+chainlit
+ty
+ruff
+pytest

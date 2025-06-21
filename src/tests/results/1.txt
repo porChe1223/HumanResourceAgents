@@ -1,0 +1,70 @@
+porChe1223@JPN-2024-007 src % uv run main.py
+Update from node orchestrate_agent:
+
+
+================================= Tool Message =================================
+Name: transfer_to_define_target_agent
+
+Successfully transferred to define_target_agent
+
+
+Update from node define_target_agent:
+
+
+================================== Ai Message ==================================
+Name: define_target_agent
+
+- 大規模言語モデル (LLM) の構築スキル
+- データ加工・モデル学習・評価の経験
+- 日本語コミュニケーション能力
+- 医療/製薬領域の知識
+- 開発チームリーダーシップ経験
+- 言語モデルの公開経験
+- 技術の再現実装経験
+- マルチノード・マルチGPUでの学習経験
+
+
+Update from node orchestrate_agent:
+
+
+================================= Tool Message =================================
+Name: transfer_to_define_site_agent
+
+Successfully transferred to define_site_agent
+
+
+Update from node define_site_agent:
+
+
+================================== Ai Message ==================================
+Name: define_site_agent
+
+- 大規模言語モデル (LLM) の研究者プロフィール: [Members | 国立情報学研究所 大規模言語モデル研究開発センター](https://llmc.nii.ac.jp/member/)
+- 生成系言語モデルの専門家プロフィール: [GENIACに関する研究と開発 - ELYZA](https://zenn.dev/elyza/articles/9e46b79371fc0e)
+- 医療製薬研究者プロフィール: [若手研究者紹介 - 公益社団法人日本薬学会](https://www.apstj.jp/publications/copy-of-yakuzaigaku/young-researcher-files/)
+
+
+Update from node research_agent:
+
+
+================================== Ai Message ==================================
+Name: research_agent
+
+- 大規模言語モデル (LLM) の研究者: 岩野原 大輔さん、AI分野の研究者であり、東京大学で学位取得後、Preferred Networks設立。AI応用の進展に寄与しています。 [詳細](https://programming-schools.com/are-large-scale-language-models-the-new-intelligence/1404/)
+
+- 生成系言語モデルの専門家: ELYZA社は、2024年に日本語対応の大規模言語モデル「Llama-3-ELYZA-JP-70B」を開発する計画を立てています。 [詳細](https://zenn.dev/elyza/articles/9e46b79371fc0e)
+
+- 医療製薬研究者プロフィール: 若手研究者の紹介として、清水 耕太さん（東京大学）や河合 敦司さん（名古屋大学）など、医療分野における研究者が挙げられています。 [詳細](https://www.apstj.jp/publications/copy-of-yakuzaigaku/young-researcher-files/)
+
+
+Update from node orchestrate_agent:
+
+
+================================= Tool Message =================================
+Name: transfer_to_report_agent
+
+Successfully transferred to report_agent
+
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-hf87OwvUTcASkjb0Htw8UCJN on tokens per min (TPM): Limit 200000, Used 200000, Requested 20968. Please try again in 6.29s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+
+簡易的な検索はできていそうではある。問題はトークンの制限。
