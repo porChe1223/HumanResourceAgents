@@ -47,16 +47,22 @@ jobs:
       - name: Lint check with ruff (agents, tools, helpers, main.py)
         working-directory: ./src
         run: |
-          uv run ruff check agents
-          uv run ruff check tools
+          uv run ruff check config
           uv run ruff check helpers
+          uv run ruff check tools
+          uv run ruff check llms
+          uv run ruff check agents
+          uv run ruff check workflows
           uv run ruff check main.py
 
       # --- 型チェック ---
       - name: Type check with ty (agents, tools, helpers, main.py)
         working-directory: ./src
         run: |
-          uv run ty check agents
-          uv run ty check tools
+          uv run ty check config
           uv run ty check helpers
+          uv run ty check tools
+          uv run ty check llms
+          uv run ty check agents
+          uv run ty check workflows
           uv run ty check main.py
