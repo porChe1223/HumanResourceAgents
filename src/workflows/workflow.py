@@ -7,6 +7,7 @@ from agents.define_site_agent import define_site_agent
 from agents.research_agent import research_agent
 from agents.score_agent import score_agent
 from agents.report_agent import report_agent
+from helpers.handle_error.runnable_retry import runnable_retry
 
 """
 LangGraphのワークフローグラフを定義
@@ -17,7 +18,7 @@ workflow = (
 
     # --- エージェントを定義 ---
     .add_node(
-      orchestrate_agent,
+      runnable_retry(orchestrate_agent),
       destinations=(
         # "client_agent",
         "define_target_agent",
@@ -32,13 +33,13 @@ workflow = (
 
     # --- エージェントを追加 ---
     # .add_node(client_agent)
-    .add_node(define_target_agent)
-    .add_node(define_site_agent)
+    .add_node(runnable_retry(define_target_agent))
+    .add_node(runnable_retry(define_site_agent))
     # .add_node(split_and_wait_node)
-    .add_node(research_agent)
+    .add_node(runnable_retry(research_agent))
     # .add_node(collect_result_node)
-    .add_node(score_agent)
-    .add_node(report_agent)
+    .add_node(runnable_retry(score_agent))
+    .add_node(runnable_retry(report_agent))
 
     # --- 司令から開始 ---
     .add_edge(
