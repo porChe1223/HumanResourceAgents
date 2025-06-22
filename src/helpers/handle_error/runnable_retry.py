@@ -1,6 +1,7 @@
 from openai import RateLimitError
 from google.api_core.exceptions import ResourceExhausted
 from langchain_core.runnables import Runnable
+from langchain_core.runnables.retry import ExponentialJitterParams
 
 
 def runnable_retry(runnable: Runnable) -> Runnable:
@@ -18,10 +19,10 @@ def runnable_retry(runnable: Runnable) -> Runnable:
         ),
         wait_exponential_jitter=True,  # 指数バックオフを利用する設定
         stop_after_attempt=2,  # 2回試行する
-        exponential_jitter_params={
-            "initial": 60,  # 最初の待機時間を60秒（1分）に設定
-            "max": 60,  # 最大待機時間も60秒に設定
-            "exp_base": 1,  # 指数的な増加をなくす
-            "jitter": 0,  # 時間の揺らぎをなくす
-        },
+        exponential_jitter_params=ExponentialJitterParams(
+            initial=60,  # 最初の待機時間を60秒（1分）に設定
+            max=60,  # 最大待機時間も60秒に設定
+            exp_base=1,  # 指数的な増加をなくす
+            jitter=0,  # 時間の揺らぎをなくす
+        ),
     )
