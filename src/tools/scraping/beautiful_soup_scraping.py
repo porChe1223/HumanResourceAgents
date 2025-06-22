@@ -2,10 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 from langchain_core.tools import tool
 from tenacity import retry, stop_after_attempt, wait_fixed
-from helpers.clean_html import clean_html
+from helpers.clean_html.clean_html import clean_html
 
 @tool
-def beautiful_soup_scraping(url: str) -> BeautifulSoup:
+def beautiful_soup_scraping(url: str) -> str:
     """BeautifulSoupでWebスクレイピングする関数。
     
     Args:
@@ -26,8 +26,8 @@ def beautiful_soup_scraping(url: str) -> BeautifulSoup:
         response.encoding = response.apparent_encoding  # 文字化け回避
 
         # BeautifulSoupでスクレイピング
-        result = BeautifulSoup(response.text, "html.parser")
-        result = clean_html(result)
+        soup = BeautifulSoup(response.text, "html.parser")
+        result = clean_html(soup)
         return result
     
     return scrape_with_retry()

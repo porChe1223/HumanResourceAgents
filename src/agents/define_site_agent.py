@@ -1,8 +1,8 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
 from tools.research.tavily_research import tavily_research
-from helpers.pretty_print_message import pretty_print_messages
-from helpers.read_txt import read_txt
+from helpers.read_txt.read_txt import read_txt
+from helpers.print.pretty_print_message import pretty_print_messages
 
 """
 サイト決定エージェント
@@ -36,7 +36,7 @@ define_site_agent = create_react_agent(
 
 if __name__ == "__main__":
   for chunk in define_site_agent.stream(
-    {"messages": [{"role": "user", "content": read_txt("tests/llm_developer/application_requirements.txt")}]}
+    {"messages": [{"role": "user", "content": read_txt("prompts/llm_developer.txt")}]}
 ):
     pretty_print_messages(chunk)
 

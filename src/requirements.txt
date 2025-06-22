@@ -1,5 +1,7 @@
 requests
 beautifulsoup4
+openai
+google-api-core
 langchain
 langchain-core
 langchain-openai
