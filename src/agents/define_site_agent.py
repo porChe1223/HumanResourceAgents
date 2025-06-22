@@ -26,7 +26,6 @@ define_site_agent = create_react_agent(
         "IMPORTANT:\n"
         "- 目的はそのスキルを持った人を見つけることです\n"
         "- 調査結果は、サイトのリンクだけを教えて。\n"
-        "- 1つだけ返して。\n"
         # "- Pythonのリスト形式で返してください。\n"
         # "- 例: ['https://www.google.com', 'https://www.yahoo.co.jp']\n"
         "- 他のテキストは一切含めないでください\n"

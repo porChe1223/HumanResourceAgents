@@ -1,12 +1,10 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
 from tools.assign_agents import(
-  # assign_to_client_agent,
-  assign_to_define_research_target_agent,
-  assign_to_define_research_strategy_agent,
-  # assign_to_research_agent,
-  assign_to_score_agent,
-  # assign_to_report_agent
+  assign_to_define_research_target_node,
+  assign_to_define_research_strategy_node,
+  assign_to_scrape_and_chunk_node,
+  assign_to_score_node,
 )
 from helpers.pretty_print_message import pretty_print_messages
 
@@ -18,12 +16,10 @@ orchestrate_agent = create_react_agent(
     name = "orchestrate_agent",
     model = llm_openai,
     tools = [
-      # assign_to_client_agent,
-      assign_to_define_research_target_agent,
-      assign_to_define_research_strategy_agent,
-      # assign_to_research_agent,
-      assign_to_score_agent,
-      # assign_to_report_agent
+      assign_to_define_research_target_node,
+      assign_to_define_research_strategy_node,
+      assign_to_scrape_and_chunk_node,
+      assign_to_score_node,
     ],
     prompt = (
       "You are an orchestrator agent.\n\n"
@@ -32,14 +28,12 @@ orchestrate_agent = create_react_agent(
       "- 必ずassign_to_workflow_stageツールを使って、次のステージを返しなさい。\n"
       "WORKFLOW:\n"
       "以下の順番にワークフローを進めてください。\n"
-      # "1. client: クライアントの要件を定義する。\n"
-      "2. define_target: 調査対象を定義する。\n"
-      "3. define_site: 調査サイトを定義する。\n"
-      # "4. research: 調査を行う。\n"
-      "5. score: 調査結果を評価する。\n"
-      # "6. report: レポートを作成する。\n"
-      "assign_to_score_agentは最後のみで使用して"
-      "- ステージ名は、define_research_target, define_research_strategy, scoreのいずれかを返しなさい。\n"
+      "1. define_target_node: 調査対象を定義する。\n"
+      "2. define_site_node: 調査サイトを定義する。\n"
+      "3. scrape_and_chunk_node: サイトをスクレイピングして、コンテンツをチャンクに分割する。\n"
+      "4. score_node: 調査結果を評価する。\n"
+      "assign_to_score_nodeは最後のみで使用して"
+      "- ステージ名は、define_target_node, define_site_node, scrape_and_chunk_node, score_nodeのいずれかを返しなさい。\n"
     )
 )
 

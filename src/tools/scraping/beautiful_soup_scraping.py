@@ -2,17 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 from langchain_core.tools import tool
 from tenacity import retry, stop_after_attempt, wait_fixed
-from helpers.clean_html.clean_html import clean_html
+from helpers.clean_html import clean_html
+from helpers.chunk_text import chunk_text
 
 @tool
-def beautiful_soup_scraping(url: str) -> str:
+def beautiful_soup_scraping(url: str) -> list[str]:
     """BeautifulSoupでWebスクレイピングする関数。
     
     Args:
         url (str): スクレイピング対象のURL
         
     Returns:
-        result (str): スクレイピング結果
+        result (list[str]): 分割されたスクレイピング結果のリスト
     """
     # スクレイピングブロック対策として、ユーザーエージェントを設定
     ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
@@ -25,13 +26,18 @@ def beautiful_soup_scraping(url: str) -> str:
         response = requests.get(url, headers=headers)
         response.encoding = response.apparent_encoding  # 文字化け回避
 
-        # BeautifulSoupでスクレイピング
+        # スクレイピング
         soup = BeautifulSoup(response.text, "html.parser")
-        result = clean_html(soup)
-        return result
+
+        # データ整形・分割
+        cleaned_text = clean_html(soup)
+        chunked_text = chunk_text(cleaned_text)
+
+
+        return chunked_text
     
     return scrape_with_retry()
 
 if __name__ == "__main__":
     result = beautiful_soup_scraping("https://researchmap.jp/press_releases/press_releases/index/633014/research_area_discipline_number:A289/sort:PressRelease.publish_start/direction:DESC/limit:10?frame_id=1601185")
-    print(result)
+    print(str(result))

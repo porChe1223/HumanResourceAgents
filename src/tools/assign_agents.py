@@ -36,47 +36,34 @@ def create_handoff_tool(
             "tool_call_id": tool_call_id,
         }
         return Command(
-            goto=agent_name,  
+            goto=agent_name,
             update={**state, "messages": state["messages"] + [tool_message]},  
-            graph=Command.PARENT,  
+            graph=Command.PARENT,
         )
 
     return handoff_tool
 
 
-# --- Handoffs ---
-# クライアントエージェントにタスクを渡す
-assign_to_client_agent = create_handoff_tool(
-    agent_name="client_agent",
-    description="Assign task to a client agent.",
-)
-
-# 調査対象決定エージェントにタスクを渡す
-assign_to_define_research_target_agent = create_handoff_tool(
-    agent_name="define_target_agent",
+# 調査対象決定ノードにタスクを渡す
+assign_to_define_research_target_node = create_handoff_tool(
+    agent_name="define_target_node",
     description="Assign task to a define_research_target agent.",
 )
 
-# 調査方針決定エージェントにタスクを渡す
-assign_to_define_research_strategy_agent = create_handoff_tool(
-    agent_name="define_site_agent",
+# 調査サイト決定ノードにタスクを渡す
+assign_to_define_research_strategy_node = create_handoff_tool(
+    agent_name="define_site_node",
     description="Assign task to a define_research_strategy agent.",
 )
 
-# 調査エージェントにタスクを渡す
-assign_to_research_agent = create_handoff_tool(
-    agent_name="research_agent",
-    description="Assign task to a research agent.",
+# スクレイピングノードにタスクを渡す
+assign_to_scrape_and_chunk_node = create_handoff_tool(
+    agent_name="scrape_and_chunk_node",
+    description="Assign task to a scrape_and_chunk agent.",
 )
 
-# 評価エージェントにタスクを渡す
-assign_to_score_agent = create_handoff_tool(
-    agent_name="score_agent",
+# 評価ノードにタスクを渡す
+assign_to_score_node = create_handoff_tool(
+    agent_name="score_node",
     description="Assign task to a score agent.",
-)
-
-# レポートエージェントにタスクを渡す
-assign_to_report_agent = create_handoff_tool(
-    agent_name="report_agent",
-    description="Assign task to a report agent.",
 )
