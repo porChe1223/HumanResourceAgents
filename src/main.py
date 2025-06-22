@@ -1,7 +1,6 @@
 import chainlit as cl
 from langchain_core.messages import HumanMessage
 from workflows.workflow import workflow
-from helpers.print.pretty_print_message import pretty_print_message
 
 @cl.on_chat_start
 def on_chat_start():
