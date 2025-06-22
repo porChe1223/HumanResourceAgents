@@ -1,6 +1,7 @@
 from langgraph.prebuilt import create_react_agent
 from llms.gemini import llm_gemini
-from helpers.print.pretty_print_message import pretty_print_messages
+from helpers.read_text import read_text
+from helpers.pretty_print_message import pretty_print_messages
 
 """
 レポートエージェント
@@ -9,16 +10,7 @@ report_agent = create_react_agent(
     name = "report_agent",
     model = llm_gemini,
     tools = [],
-    prompt = (
-        "You are a report agent.\n\n"
-        "INSTRUCTIONS:\n"
-        "- Assist ONLY with report-related tasks, DO NOT do any other tasks\n"
-        "- 受け取った全ての目ぼしいユーザに対しての調査結果のレポートを作成\n"
-        "- 評価結果を受け取ったらそれも合わせたレポートを作成\n"
-        "- 人事担当者向けにわかりやすいレポート生成\n"
-        "- 作成したレポートを司令に報告\n"
-        "- Respond ONLY with the results of your work, do NOT include ANY other text."
-      )
+    prompt = read_text("prompts/report_prompt.txt")
   )
 
 if __name__ == "__main__":

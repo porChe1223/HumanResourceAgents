@@ -28,6 +28,7 @@ def create_handoff_tool(
     def handoff_tool(
         state: Annotated[MessagesState, InjectedState],
         tool_call_id: Annotated[str, InjectedToolCallId],
+        *args, **kwargs,
     ) -> Command:
         tool_message = {
             "role": "tool",

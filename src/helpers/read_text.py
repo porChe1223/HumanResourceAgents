@@ -1,4 +1,4 @@
-def read_txt(file_path):
+def read_text(file_path):
   """
   テキストファイルを読み込む
 
@@ -12,4 +12,4 @@ def read_txt(file_path):
     return file.read()
 
 if __name__ == "__main__":
-  print(read_txt("tests/llm_developer/application_requirements.txt"))
+  print(read_text("prompts/user_input_samples/llm_developer.txt"))

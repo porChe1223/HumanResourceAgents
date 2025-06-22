@@ -8,7 +8,8 @@ from tools.assign_agents import(
   assign_to_score_agent,
   # assign_to_report_agent
 )
-from helpers.print.pretty_print_message import pretty_print_messages
+from helpers.read_text import read_text
+from helpers.pretty_print_message import pretty_print_messages
 
 """
 司令エージェント
@@ -25,22 +26,7 @@ orchestrate_agent = create_react_agent(
       assign_to_score_agent,
       # assign_to_report_agent
     ],
-    prompt = (
-      "You are an orchestrator agent.\n\n"
-      "INSTRUCTIONS:\n"
-      "- 受け取ったデータから次のワークフローステージを判定しなさい。\n"
-      "- 必ずassign_to_workflow_stageツールを使って、次のステージを返しなさい。\n"
-      "WORKFLOW:\n"
-      "以下の順番にワークフローを進めてください。\n"
-      # "1. client: クライアントの要件を定義する。\n"
-      "2. define_target: 調査対象を定義する。\n"
-      "3. define_site: 調査サイトを定義する。\n"
-      # "4. research: 調査を行う。\n"
-      "5. score: 調査結果を評価する。\n"
-      # "6. report: レポートを作成する。\n"
-      "assign_to_score_agentは最後のみで使用して"
-      "- ステージ名は、define_research_target, define_research_strategy, scoreのいずれかを返しなさい。\n"
-    )
+    prompt = read_text("prompts/orchestrate_prompt.txt")
 )
 
 if __name__ == "__main__":
