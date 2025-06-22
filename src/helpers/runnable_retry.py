@@ -20,8 +20,8 @@ def runnable_retry(runnable: Runnable) -> Runnable:
         wait_exponential_jitter=True,  # 指数バックオフを利用する設定
         stop_after_attempt=2,  # 2回試行する
         exponential_jitter_params=ExponentialJitterParams(
-            initial=60,  # 最初の待機時間を60秒（1分）に設定
-            max=60,  # 最大待機時間も60秒に設定
+            initial=70,  # 最初の待機時間を70秒に設定
+            max=70,  # 最大待機時間も70秒に設定
             exp_base=1,  # 指数的な増加をなくす
             jitter=0,  # 時間の揺らぎをなくす
         ),

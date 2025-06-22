@@ -1,6 +1,6 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
-from tools.scraping.beautiful_soup_scraping import beautiful_soup_scraping
+from tools.research.scrape_and_summarize import scrape_and_summarize
 from helpers.pretty_print_message import pretty_print_messages
 
 """
@@ -9,14 +9,15 @@ from helpers.pretty_print_message import pretty_print_messages
 research_agent = create_react_agent(
     name = "research_agent",
     model = llm_openai,
-    tools = [beautiful_soup_scraping],
+    tools = [scrape_and_summarize],
     prompt = (
-        "You are a research agent.\n\n"
+        "You are a research agent. Your goal is to investigate a topic on a given website and provide a summary.\n\n"
         "INSTRUCTIONS:\n"
-        "- Assist ONLY with research-related tasks, DO NOT do any other tasks\n"
-        "- 調査対象のサイトから情報をスクレイピングして\n"
-        "- その情報をもとに目的の情報を探して\n"
-        "- Respond ONLY with the results of your work, do NOT include ANY other text."
+        "1. You will be given a message history. Identify the user's original request or question from the beginning of the history.\n"
+        "2. You will also be given a URL to a website. This is your target for research.\n"
+        "3. Use the `scrape_and_summarize` tool to get a summary of the website's content. \n"
+        "4. You MUST provide both the `url` and the original `request` to the tool.\n"
+        "5. Respond ONLY with the summary you receive from the tool. Do not add any other text."
       )
   )
 

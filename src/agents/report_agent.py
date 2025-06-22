@@ -17,6 +17,7 @@ report_agent = create_react_agent(
         "- 評価結果を受け取ったらそれも合わせたレポートを作成\n"
         "- 人事担当者向けにわかりやすいレポート生成\n"
         "- 作成したレポートを司令に報告\n"
+        "- markdown形式で作成\n"
         "- Respond ONLY with the results of your work, do NOT include ANY other text."
       )
   )

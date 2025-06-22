@@ -1,19 +1,20 @@
 from bs4 import BeautifulSoup
 import re
+from langchain_text_splitters import CharacterTextSplitter
 
-def clean_html(soup: BeautifulSoup) -> str:
-    """HTMLから不要な要素を削除してメインコンテンツのみを抽出する関数。
+def clean_and_split_text(soup: BeautifulSoup) -> list[str]:
+    """HTMLから不要な要素を削除してメインコンテンツのみを抽出し、テキストを分割する関数。
     
     Args:
         soup (BeautifulSoup): BeautifulSoupオブジェクト
         
     Returns:
-        BeautifulSoup: クリーンアップされたBeautifulSoupオブジェクト
+        list[str]: 分割されたテキストのリスト
     """
     # --- 不要なタグを削除 ---
     unwanted_tags = [
         'script', 'style', 'nav', 'header', 'footer', 'aside', 
-        'noscript', 'iframe', 'embed', 'object', 'form'
+        'noscript', 'iframe', 'embed', 'object', 'form', 'img'
     ]
     
     for tag in unwanted_tags:
@@ -53,4 +54,10 @@ def clean_html(soup: BeautifulSoup) -> str:
     # --- テンプレートタグを削除 ---
     text = re.sub(r'\{\{.*?\}\}', '', text)
 
-    return text.strip()
+    # --- テキストを分割 ---
+    text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
+        encoding_name="cl100k_base", chunk_size=2000, chunk_overlap=100
+    )
+    texts = text_splitter.split_text(text)
+
+    return texts
