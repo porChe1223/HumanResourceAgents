@@ -11,19 +11,12 @@ define_target_agent = create_react_agent(
     name = "define_target_agent",
     model = llm_openai,
     tools = [tavily_research],
-    prompt = (
-        "You are a research target agent.\n\n"
-        "INSTRUCTIONS:\n"
-        "- Assist ONLY with research-related tasks, DO NOT do any other tasks\n"
-        "- 要件に対してどのようなスキル・経験が必要か調べて\n"
-        "- そのスキル名・経験名だけを教えて。\n"
-        "- Respond ONLY with the results of your work, do NOT include ANY other text."
-      )
+    prompt = read_text("prompts/define_target_prompt.txt")
   )
 
 if __name__ == "__main__":
   for chunk in define_target_agent.stream(
-    {"messages": [{"role": "user", "content": read_text("prompts/llm_developer.txt")}]}
+    {"messages": [{"role": "user", "content": read_text("prompts/user_input_samples/llm_developer.txt")}]}
 ):
     pretty_print_messages(chunk)
 

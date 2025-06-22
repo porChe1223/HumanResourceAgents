@@ -1,6 +1,7 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
 from tools.scraping.beautiful_soup_scraping import beautiful_soup_scraping
+from helpers.read_text import read_text
 from helpers.pretty_print_message import pretty_print_messages
 
 """
@@ -10,14 +11,7 @@ research_agent = create_react_agent(
     name = "research_agent",
     model = llm_openai,
     tools = [beautiful_soup_scraping],
-    prompt = (
-        "You are a research agent.\n\n"
-        "INSTRUCTIONS:\n"
-        "- Assist ONLY with research-related tasks, DO NOT do any other tasks\n"
-        "- 調査対象のサイトから情報をスクレイピングして\n"
-        "- その情報をもとに目的の情報を探して\n"
-        "- Respond ONLY with the results of your work, do NOT include ANY other text."
-      )
+    prompt = read_text("prompts/research_prompt.txt")
   )
 
 if __name__ == "__main__":

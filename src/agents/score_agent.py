@@ -1,5 +1,6 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
+from helpers.read_text import read_text
 from helpers.pretty_print_message import pretty_print_messages
 
 """
@@ -9,14 +10,7 @@ score_agent = create_react_agent(
     name = "score_agent",
     model = llm_openai,
     tools = [],
-    prompt = (
-        "You are a score agent.\n\n"
-        "INSTRUCTIONS:\n"
-        "- Assist ONLY with score-related tasks, DO NOT do any other tasks\n"
-        "- 調査結果をもとに評価を行う\n"
-        "- 評価結果を教えて。\n"
-        "- Respond ONLY with the results of your work, do NOT include ANY other text."
-      )
+    prompt = read_text("prompts/score_prompt.txt")
   )
 
 if __name__ == "__main__":
