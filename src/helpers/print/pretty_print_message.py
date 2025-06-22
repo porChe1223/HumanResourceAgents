@@ -1,12 +1,15 @@
 from langchain_core.messages import convert_to_messages
 
-"""
-メッセージを整形して表示するヘルパー関数
-"""
-
 def pretty_print_message(message, indent=False):
     """
-    メッセージを整形して表示する
+    メッセージを整形して表示
+
+    Args:
+        message: メッセージ
+        indent: インデントするかどうか
+        
+    Returns:
+        None
     """
     pretty_message = message.pretty_repr(html=True)
     if not indent:
@@ -19,7 +22,7 @@ def pretty_print_message(message, indent=False):
 
 def pretty_print_messages(update, last_message=False):
     """
-    メッセージを整形して表示する
+    メッセージを整形して表示
     """
     is_subgraph = False
     if isinstance(update, tuple):

@@ -1,7 +1,7 @@
 from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai
 from tools.scraping.beautiful_soup_scraping import beautiful_soup_scraping
-from helpers.pretty_print_message import pretty_print_messages
+from helpers.print.pretty_print_message import pretty_print_messages
 
 """
 調査エージェント
