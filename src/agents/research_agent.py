@@ -1,5 +1,5 @@
 from langgraph.prebuilt import create_react_agent
-from llms.openai import llm_openai
+from llms.openai import llm_openai_4o
 from tools.scraping.beautiful_soup_scraping import beautiful_soup_scraping
 from helpers.read_text import read_text
 from helpers.pretty_print_message import pretty_print_messages
@@ -9,7 +9,7 @@ from helpers.pretty_print_message import pretty_print_messages
 """
 research_agent = create_react_agent(
     name = "research_agent",
-    model = llm_openai,
+    model = llm_openai_4o,
     tools = [beautiful_soup_scraping],
     prompt = read_text("prompts/research_prompt.txt")
   )
