@@ -98,9 +98,7 @@ You are an expert in human resources reporting. You specialize in creating compr
 - [Presentation of Alternatives]
 
 ## References
-1. [URL used for research]
-2. [URL used for research]
-3. [URL used for research]
+[URLs used for research]
 </output_format>
 </output_format>
 
