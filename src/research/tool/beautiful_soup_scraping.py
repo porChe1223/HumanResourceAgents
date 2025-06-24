@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from langchain_core.tools import tool
 from tenacity import retry, stop_after_attempt, wait_fixed
-from helpers.clean_html import clean_html
+from langchain_core.tools import tool
+from research.helper.clean_html import clean_html
 
 @tool
 def beautiful_soup_scraping(url: str) -> str:
