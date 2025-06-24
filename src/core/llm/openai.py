@@ -1,8 +1,8 @@
 from langchain_openai import ChatOpenAI
-from config.config import Config
+from core.config.set_env import SetEnv
 
 llm_openai = ChatOpenAI(
     model="gpt-4o-mini", # ty: ignore[unknown-argument]
     temperature=0,
-    api_key=Config.OPENAI_API_KEY # ty: ignore[unknown-argument]
+    api_key=SetEnv.OPENAI_API_KEY # ty: ignore[unknown-argument]
 )

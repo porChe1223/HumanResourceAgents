@@ -1,8 +1,8 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from config.config import Config
+from core.config.set_env import SetEnv
 
 llm_gemini = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash",
     temperature=0,
-    api_key=Config.GOOGLE_API_KEY
+    api_key=SetEnv.GOOGLE_API_KEY
 )

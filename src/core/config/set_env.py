@@ -1,6 +1,6 @@
 import os
 
-class Config:
+class SetEnv:
     """環境変数を管理するクラス
     
     Attributes:
@@ -13,7 +13,7 @@ class Config:
     TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
     @classmethod
-    def validate(self):
+    def set_env(self):
         """環境変数が設定されているかを確認"""
         required_keys = [self.OPENAI_API_KEY, self.GOOGLE_API_KEY, self.TAVILY_API_KEY]
 
