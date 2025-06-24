@@ -39,7 +39,7 @@ You are an expert in selecting sites specialized in talent discovery. You have e
 </instructions>
 
 ## <output_format>
-[‘Site URL1’, ‘Site URL2’, ‘Site URL3’]
+[‘Site URL1’, ‘Site URL2’, ‘Site URL3’, ...]
 </output_format>
 
 ## <final_notes>
