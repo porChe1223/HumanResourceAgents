@@ -44,25 +44,25 @@ jobs:
           uv pip list
 
       # --- Lintチェック ---
-      - name: Lint check with ruff (agents, tools, helpers, main.py)
+      - name: Lint check with ruff (core, orchestrate, strategy, research, recommend, shared, main.py)
         working-directory: ./src
         run: |
-          uv run ruff check config
-          uv run ruff check helpers
-          uv run ruff check tools
-          uv run ruff check llms
-          uv run ruff check agents
-          uv run ruff check workflows
+          uv run ruff check core
+          uv run ruff check orchestrate
+          uv run ruff check strategy
+          uv run ruff check research
+          uv run ruff check recommend
+          uv run ruff check shared
           uv run ruff check main.py
 
       # --- 型チェック ---
-      - name: Type check with ty (agents, tools, helpers, main.py)
+      - name: Type check with ty (core, orchestrate, strategy, research, recommend, shared, main.py)
         working-directory: ./src
         run: |
-          uv run ty check config
-          uv run ty check helpers
-          uv run ty check tools
-          uv run ty check llms
-          uv run ty check agents
-          uv run ty check workflows
+          uv run ty check core
+          uv run ty check orchestrate
+          uv run ty check strategy
+          uv run ty check research
+          uv run ty check recommend
+          uv run ty check shared
           uv run ty check main.py
