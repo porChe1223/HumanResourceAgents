@@ -6,8 +6,8 @@ from recommend.agent.recommend_agent import recommend_agent
 def recommend_chain(state):
     """
     推薦チェーン
-    
-    人材のスコアリングをし、推薦レポートを作成
+
+    - 推薦エージェントを呼び出す
     """
     result = runnable_retry(recommend_agent).invoke(state)
 

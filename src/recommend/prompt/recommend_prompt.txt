@@ -178,5 +178,3 @@ You are an expert in personnel evaluation and report creation. Based on personne
 - Professional document quality
 - Appropriate balance of quantitative evaluation and qualitative analysis
 </quality_standards>
-
-Translated with DeepL.com (free version)

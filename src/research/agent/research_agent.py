@@ -5,6 +5,9 @@ from shared.helper.read_text import read_text
 
 """
 調査エージェント
+
+- URLをスクレイピング
+- スクレイピング結果から人材の情報を取得
 """
 research_agent = create_react_agent(
     name = "research_agent",

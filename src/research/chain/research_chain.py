@@ -7,7 +7,7 @@ def research_chain(state):
     """
     調査チェーン
 
-    URLから人材の情報を取得
+    - 調査エージェントを呼び出す
     """
     result = runnable_retry(research_agent).invoke(state)
 
