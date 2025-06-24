@@ -53,31 +53,31 @@ assign_to_client_agent = create_handoff_tool(
 )
 
 # 調査対象決定エージェントにタスクを渡す
-assign_to_define_research_target_agent = create_handoff_tool(
-    agent_name="define_target_agent",
+assign_to_define_research_target_node = create_handoff_tool(
+    agent_name="define_target_node",
     description="Assign task to a define_research_target agent.",
 )
 
 # 調査方針決定エージェントにタスクを渡す
-assign_to_define_research_strategy_agent = create_handoff_tool(
-    agent_name="define_site_agent",
+assign_to_define_research_strategy_node = create_handoff_tool(
+    agent_name="define_site_node",
     description="Assign task to a define_research_strategy agent.",
 )
 
 # 調査エージェントにタスクを渡す
-assign_to_research_agent = create_handoff_tool(
-    agent_name="research_agent",
+assign_to_research_node = create_handoff_tool(
+    agent_name="research_node",
     description="Assign task to a research agent.",
 )
 
 # 評価エージェントにタスクを渡す
-assign_to_score_agent = create_handoff_tool(
-    agent_name="score_agent",
+assign_to_score_node = create_handoff_tool(
+    agent_name="score_node",
     description="Assign task to a score agent.",
 )
 
 # レポートエージェントにタスクを渡す
-assign_to_report_agent = create_handoff_tool(
-    agent_name="report_agent",
+assign_to_report_node = create_handoff_tool(
+    agent_name="report_node",
     description="Assign task to a report agent.",
 )

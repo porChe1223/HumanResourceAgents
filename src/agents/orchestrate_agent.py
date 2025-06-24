@@ -2,10 +2,10 @@ from langgraph.prebuilt import create_react_agent
 from llms.openai import llm_openai_4o
 from tools.assign_agents import(
   # assign_to_client_agent,
-  assign_to_define_research_target_agent,
-  assign_to_define_research_strategy_agent,
+  assign_to_define_research_target_node,
+  assign_to_define_research_strategy_node,
   # assign_to_research_agent,
-  assign_to_score_agent,
+  assign_to_score_node,
   # assign_to_report_agent
 )
 from helpers.read_text import read_text
@@ -20,10 +20,10 @@ orchestrate_agent = create_react_agent(
     model = llm_openai_4o,
     tools = [
       # assign_to_client_agent,
-      assign_to_define_research_target_agent,
-      assign_to_define_research_strategy_agent,
+      assign_to_define_research_target_node,
+      assign_to_define_research_strategy_node,
       # assign_to_research_agent,
-      assign_to_score_agent,
+      assign_to_score_node,
       # assign_to_report_agent
     ],
     prompt = read_text("prompts/orchestrate_prompt.txt")

@@ -1,12 +1,10 @@
 from langgraph.graph import END, StateGraph, MessagesState, START
-from agents.orchestrate_agent import orchestrate_agent
-# from agents.client_agent import client_agent
-from agents.define_target_agent import define_target_agent
-from agents.define_site_agent import define_site_agent
-from agents.research_agent import research_agent
-from agents.score_agent import score_agent
-from agents.report_agent import report_agent
-from helpers.runnable_retry import runnable_retry
+from nodes.define_site_node import define_site_node
+from nodes.define_target_node import define_target_node
+from nodes.orchestrate_node import orchestrate_node
+from nodes.report_node import report_node
+from nodes.research_node import research_node
+from nodes.score_node import score_node
 
 """
 LangGraphのワークフローグラフを定義
@@ -17,33 +15,33 @@ workflow = (
 
     # --- エージェントを定義 ---
     .add_node(
-      runnable_retry(orchestrate_agent),
+      orchestrate_node,
       destinations=(
         # "client_agent",
-        "define_target_agent",
-        "define_site_agent",
+        "define_target_node",
+        "define_site_node",
         # "split_and_wait_node",
         # "research_agent",
         # "collect_result_node",
-        "score_agent",
-        "report_agent",
+        "score_node",
+        "report_node",
         END
     ))
 
     # --- エージェントを追加 ---
     # .add_node(client_agent)
-    .add_node(runnable_retry(define_target_agent))
-    .add_node(runnable_retry(define_site_agent))
+    .add_node(define_target_node)
+    .add_node(define_site_node)
     # .add_node(split_and_wait_node)
-    .add_node(runnable_retry(research_agent))
+    .add_node(research_node)
     # .add_node(collect_result_node)
-    .add_node(runnable_retry(score_agent))
-    .add_node(runnable_retry(report_agent))
+    .add_node(score_node)
+    .add_node(report_node)
 
     # --- 司令から開始 ---
     .add_edge(
       START,
-      "orchestrate_agent",  # 司令から各エージェントへ
+      "orchestrate_node",  # 司令から各エージェントへ
     )
 
     # --- 指令を挟まない接続 ---
@@ -53,13 +51,13 @@ workflow = (
     #   "define_site_agent",
     # )
     .add_edge(
-      "define_site_agent",
-      "research_agent",
+      "define_site_node",
+      "research_node",
     )
     # 評価後はそのままレポートへ
     .add_edge(
-      "score_agent",
-      "report_agent",
+      "score_node",
+      "report_node",
     )
 
     # --- 各エージェントから司令へ ---
@@ -69,17 +67,17 @@ workflow = (
     #   "orchestrate_agent",
     # )
     .add_edge(
-      "define_target_agent",
-      "orchestrate_agent",
+      "define_target_node",
+      "orchestrate_node",
     )
     .add_edge(
-      "research_agent",
-      "orchestrate_agent",
+      "research_node",
+      "orchestrate_node",
     )
 
     # --- 終了 ---
     .add_edge(
-      "report_agent",
+      "report_node",
       END,
     )
 
