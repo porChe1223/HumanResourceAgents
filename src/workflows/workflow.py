@@ -23,7 +23,7 @@ workflow = (
         "define_target_agent",
         "define_site_agent",
         # "split_and_wait_node",
-        "research_agent",
+        # "research_agent",
         # "collect_result_node",
         "score_agent",
         "report_agent",
@@ -48,10 +48,10 @@ workflow = (
 
     # --- 指令を挟まない接続 ---
     # サイト決定後はそのまま調査へ
-    .add_edge(
-      "define_target_agent",
-      "define_site_agent",
-    )
+    # .add_edge(
+    #   "define_target_agent",
+    #   "define_site_agent",
+    # )
     .add_edge(
       "define_site_agent",
       "research_agent",
