@@ -193,3 +193,4 @@ cython_debug/
 .sample
 
 docs/result_sample/
+docs/input_sample/
