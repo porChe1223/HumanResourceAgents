@@ -1,6 +1,6 @@
 requests
 beautifulsoup4
-openai
+chainlit
 google-api-core
 langchain
 langchain-core
@@ -9,8 +9,8 @@ langchain-google-genai
 langchain-tavily
 langgraph
 langgraph-supervisor
+openai
 tenacity
-chainlit
 ty
 ruff
 pytest
