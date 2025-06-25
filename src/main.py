@@ -1,23 +1,29 @@
 import chainlit as cl
 from langchain_core.messages import HumanMessage
-from workflows.workflow import workflow
-
+from langchain_core.runnables import RunnableConfig
+from core.pipeline.pipeline import pipeline
 
 @cl.on_chat_start
 def on_chat_start():
     # チェーンをセッションに保存
-    cl.user_session.set("chain", workflow)
+    cl.user_session.set("chain", pipeline)
 
 @cl.on_message
-async def on_chat_message(message: cl.Message):
-    # チェーンを取得
-    chain = cl.user_session.get("chain")
+async def on_message(message: cl.Message):
+    config = {"configurable": {"thread_id": cl.context.session.id}}
+    cb = cl.AsyncLangchainCallbackHandler()
 
-    # チェーンを呼び出し
-    res = await chain.ainvoke(
-        {"messages": [HumanMessage(content=message.content)]},
-        config={"callbacks": [cl.AsyncLangchainCallbackHandler()]},
-    )
+    try:
+        res = await pipeline.ainvoke(
+            {"messages": [HumanMessage(content=message.content)]},
+            config=RunnableConfig(callbacks=[cb], **config),
+        )
 
-    # チェーンの応答を送信
-    await cl.Message(content=res["messages"][-1].content).send()
+        await cl.Message(content=res["messages"][-1].content).send()
+        
+    except Exception as e:
+        await cl.Message(content=f"エラーが発生しました: {e}").send()
+
+@cl.on_chat_resume
+async def on_chat_resume(thread):
+    pass
