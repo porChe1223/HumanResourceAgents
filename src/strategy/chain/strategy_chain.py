@@ -1,8 +1,8 @@
-from core.state.state import State
+from core.state.pipeline_state import PipelineState
 from strategy.func.analyze_skill import analyze_skill
 from strategy.func.select_site import select_site
 
-def strategy_chain(state: State):
+def strategy_chain(state: PipelineState):
     """
     戦略決定チェーン
 

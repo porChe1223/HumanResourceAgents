@@ -47,22 +47,10 @@ jobs:
       - name: Lint check with ruff (core, orchestrate, strategy, research, recommend, shared, main.py)
         working-directory: ./src
         run: |
-          uv run ruff check core
-          uv run ruff check orchestrate
-          uv run ruff check strategy
-          uv run ruff check research
-          uv run ruff check recommend
-          uv run ruff check shared
-          uv run ruff check main.py
+          uv run ruff check
 
       # --- 型チェック ---
       - name: Type check with ty (core, orchestrate, strategy, research, recommend, shared, main.py)
         working-directory: ./src
         run: |
-          uv run ty check core
-          uv run ty check orchestrate
-          uv run ty check strategy
-          uv run ty check research
-          uv run ty check recommend
-          uv run ty check shared
-          uv run ty check main.py
+          uv run ty check
