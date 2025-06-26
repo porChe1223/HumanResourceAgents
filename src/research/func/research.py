@@ -4,7 +4,7 @@ from core.state.pipeline_state import PipelineState
 from core.state.research_state import ResearchState
 from core.helper.runnable_retry import runnable_retry
 from research.agent.research_agent import research_agent
-from research.func.beautiful_soup_scrape import beautiful_soup_scrape
+from research.helper.beautiful_soup_scrape import beautiful_soup_scrape
 
 def research(state: PipelineState):
     """
