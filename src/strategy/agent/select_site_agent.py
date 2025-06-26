@@ -8,9 +8,9 @@ from shared.helper.read_text import read_text
 
 - 条件を満たす人材を探せるサイトを選択
 """
-site_agent = create_react_agent(
-    name = "site_agent",
+select_site_agent = create_react_agent(
+    name = "select_site_agent",
     model = llm_openai,
     tools = [],
-    prompt = read_text("strategy/prompt/site_prompt.txt")
+    prompt = read_text("strategy/prompt/select_site_prompt.txt")
   )

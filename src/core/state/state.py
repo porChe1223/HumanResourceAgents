@@ -1,5 +1,6 @@
 from langgraph.graph import MessagesState
 
 class State(MessagesState):
-    skills: str
-    sites: list[str]
+    user_input: str = ""  # ユーザ入力
+    skills: str = ""      # スキル
+    sites: list[str] = [] # サイト
