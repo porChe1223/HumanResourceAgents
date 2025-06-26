@@ -1,5 +1,6 @@
 from langgraph.graph import StateGraph, MessagesState, START, END
 from orchestrate.chain.orchestrate_chain import orchestrate_chain
+from core.state.state import State
 from strategy.chain.strategy_chain import strategy_chain
 from research.chain.research_chain import research_chain
 from recommend.chain.recommend_chain import recommend_chain
@@ -9,7 +10,7 @@ LangGraphのワークフローグラフを定義
 """
 pipeline = (
     # --- パイプラインを定義 ---
-    StateGraph(MessagesState)
+    StateGraph(State)
 
     # --- チェーンを定義 ---
     .add_node(
