@@ -1,6 +1,6 @@
 from langgraph.prebuilt import create_react_agent
 from core.llm.openai import llm_openai
-from shared.tool.tavily_research import tavily_research
+from strategy.tool.tavily_research import tavily_research
 from shared.helper.read_text import read_text
 
 
