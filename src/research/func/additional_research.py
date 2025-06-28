@@ -3,7 +3,7 @@ from langchain_core.messages import HumanMessage
 from core.state.pipeline_state import PipelineState
 from core.state.research_state import ResearchState
 from core.helper.runnable_retry import runnable_retry
-from research.agent.parse_json_agent import parse_json_agent
+from research.agent.data_shape_agent import data_shape_agent
 from research.agent.select_additional_site_agent import select_additional_site_agent
 
 def additional_research(state: PipelineState, research_state: ResearchState):
@@ -18,7 +18,7 @@ def additional_research(state: PipelineState, research_state: ResearchState):
     print("-----------research_result--------------")
     print(research_result)
 
-    research_result_json = runnable_retry(parse_json_agent).invoke(HumanMessage(content=research_result))
+    research_result_json = runnable_retry(data_shape_agent).invoke(HumanMessage(content=research_result))
     print("-----------research_result_json--------------")
     print(research_result_json)
 
