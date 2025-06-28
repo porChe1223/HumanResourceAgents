@@ -17,6 +17,7 @@ pipeline = (
       orchestrate_chain,
       destinations=(
         "strategy_chain",                             # 司令 => 戦略決定
+        "research_chain",                             # 司令 => 調査
         "recommend_chain",                            # 司令 => 推薦
       )
     )
@@ -26,7 +27,7 @@ pipeline = (
 
     # --- チェーンを接続 ---
     .add_edge(START, "orchestrate_chain")             # 開始     =>  司令
-    .add_edge("strategy_chain", "research_chain")     # 戦略決定  =>  調査
+    .add_edge("strategy_chain", "orchestrate_chain")  # 戦略決定  => 司令
     .add_edge("research_chain", "orchestrate_chain")  # 調査     =>  司令
     .add_edge("recommend_chain", END)                 # 推薦     =>  終了
 
