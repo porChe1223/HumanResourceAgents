@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt, wait_fixed
-from research.func.clean_html import clean_html
+from research.helper.clean_html import clean_html
 
 def beautiful_soup_scrape(url: str) -> str:
     """BeautifulSoupでWebスクレイピングする関数。
