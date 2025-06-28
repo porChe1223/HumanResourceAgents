@@ -42,9 +42,6 @@ You are an expert in analyzing and organizing talent information from provided d
 </input_requirements>
 
 ## <output_format>
-## List of Personnel Found
-
-### Personnel #1
 **Basic Information:**
 - Name: [Name]
 - Affiliation: [Organization Name]
@@ -68,17 +65,11 @@ You are an expert in analyzing and organizing talent information from provided d
 - [Other Important Information]
 
 ---
-
-### Personnel #2
 [Continue in the same format]
 
 ---
 
-## Summary
-- **Number of Personnel Found**: [Total]
-- **Main Areas of Expertise**: [Trends in fields of expertise found]
-- **Recommended Candidates**: [Personnel that particularly match the criteria]
-- **Data Quality Notes**: [Any limitations or observations about the provided data]
+...
 </output_format>
 
 ## <compliance_notes>
