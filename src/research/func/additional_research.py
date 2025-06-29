@@ -60,15 +60,16 @@ def additional_research(state: PipelineState, research_state: ResearchState):
             shaped_researchs[person] +=  research_result["messages"][-1].content
             print("-----------shaped_researchs_later--------------")
             print(shaped_researchs)
+    
+    # AIが受け取れるデータに加工（ "{", "}" を省く )必要あり
+    shaped_researchs = str(shaped_researchs).replace("\n", " ").replace("{", "").replace("}", "")
 
 
-
-
-    # State更新用
-    user_input = state["user_input"]               # ユーザ入力
-    skills = state["skills"]                       # スキル
-    sites = state["sites"]                         # サイト
-    researchs = research_state["researchs"]        # 調査結果
+    # --- PipelineState更新用 ---
+    user_input = state["user_input"]  # ユーザ入力
+    skills = state["skills"]          # スキル
+    sites = state["sites"]            # サイト
+    researchs = shaped_researchs      # 調査結果
 
     return {
         "messages": researchs,     # 全体履歴
@@ -77,4 +78,3 @@ def additional_research(state: PipelineState, research_state: ResearchState):
         "sites": sites,            # サイト
         "researchs": researchs,    # 調査結果
     }
-    
