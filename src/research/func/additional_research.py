@@ -6,6 +6,8 @@ from core.state.research_state import ResearchState
 from core.helper.runnable_retry import runnable_retry
 from research.agent.data_shape_agent import data_shape_agent
 from research.agent.select_additional_site_agent import select_additional_site_agent
+from research.agent.additional_research_agent import additional_research_agent
+from research.helper.beautiful_soup_scrape import beautiful_soup_scrape
 
 def additional_research(state: PipelineState, research_state: ResearchState):
     """
@@ -22,11 +24,12 @@ def additional_research(state: PipelineState, research_state: ResearchState):
 
     # --- 調査結果を整形 ---
     shaped_researchs = runnable_retry(data_shape_agent).invoke(HumanMessage(content=researchs))
+    shaped_researchs = json.loads(shaped_researchs["messages"][-1].content)
     print("-----------shaped_researchs--------------")
     print(shaped_researchs)
 
     # --- ユーザリストを取得 ---
-    person_list = list(json.loads(shaped_researchs["messages"][-1].content).keys())
+    person_list = list(shaped_researchs.keys())
     print("-----------person_list--------------")
     print(person_list)
 
@@ -41,14 +44,32 @@ def additional_research(state: PipelineState, research_state: ResearchState):
         url_list = ast.literal_eval(additional_sites["messages"][-1].content) if isinstance(additional_sites["messages"][-1].content, str) else additional_sites["messages"][-1].content
         print("-----------url_list--------------")
         print(url_list)
-        # TODO: スクレイピング
+        for url in url_list:
+            # スクレイピング
+            print("-----------url--------------")
+            print(url)
+            scrape_result = beautiful_soup_scrape(url)
+            print("-----------scrape_result--------------")
+            print(scrape_result)
+            # 調査エージェントを呼び出す
+            research_result = runnable_retry(additional_research_agent).invoke(HumanMessage(content=scrape_result))
+            print("-----------research_result--------------")
+            print(research_result)
+            # 調査結果を追加
+            shaped_researchs[person] += "あ                            あ"
+            shaped_researchs[person] +=  research_result["messages"][-1].content
+            print("-----------shaped_researchs_later--------------")
+            print(shaped_researchs)
+    
+    # AIが受け取れるデータに加工（ "{", "}" を省く )必要あり
+    shaped_researchs = str(shaped_researchs).replace("\n", " ").replace("{", "").replace("}", "")
 
 
-    # State更新用
-    user_input = state["user_input"]               # ユーザ入力
-    skills = state["skills"]                       # スキル
-    sites = state["sites"]                         # サイト
-    researchs = research_state["researchs"]        # 調査結果
+    # --- PipelineState更新用 ---
+    user_input = state["user_input"]  # ユーザ入力
+    skills = state["skills"]          # スキル
+    sites = state["sites"]            # サイト
+    researchs = shaped_researchs      # 調査結果
 
     return {
         "messages": researchs,     # 全体履歴
@@ -57,4 +78,3 @@ def additional_research(state: PipelineState, research_state: ResearchState):
         "sites": sites,            # サイト
         "researchs": researchs,    # 調査結果
     }
-    
