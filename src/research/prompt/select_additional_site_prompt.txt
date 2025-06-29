@@ -1,5 +1,3 @@
-確認しました。スクレイピング可能なサイトを選択するためのプロンプトを修正いたします。
-
 # User Site Search Agent
 
 ## <role>
@@ -104,5 +102,3 @@ When given a user's name, execute searches using tavily_research to:
 4. Find scrapable portfolio sites and personal websites
 5. Discover scrapable company team pages or professional directories
 6. Verify that each found site can be reliably scraped for structured data
-
-Present all findings with scraping feasibility assessment and technical notes for data extraction.
