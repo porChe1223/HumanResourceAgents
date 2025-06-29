@@ -1,20 +1,21 @@
-from langgraph.types import Command
-from langchain_core.messages import HumanMessage
-from core.helper.runnable_retry import runnable_retry
-from strategy.agent.strategy_agent import strategy_agent
+from core.state.pipeline_state import PipelineState
+from strategy.func.analyze_skill import analyze_skill
+from strategy.func.select_site import select_site
 
-def strategy_chain(state):
+def strategy_chain(state: PipelineState):
     """
     戦略決定チェーン
 
-    - 戦略決定エージェントを呼び出す
+    - 要件から必要なスキルを選択
+    - スキルから必要なサイトを選択
     """
-    result = runnable_retry(strategy_agent).invoke(state)
-
-    return Command(
-        update={
-            "messages": [
-                HumanMessage(content=result["messages"][-1].content, name="strategy_chain")
-            ]
-        },
-    )
+    print("-----------start-------------")
+    print(state)
+    print("-----------analyze_skill-------------")
+    state = analyze_skill(state) # スキル選択
+    print(state)
+    print("-----------select_site-------------")
+    state = select_site(state)   # サイト選択
+    print(state)
+    print("---------------------------")
+    return state

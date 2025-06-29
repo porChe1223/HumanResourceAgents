@@ -192,5 +192,4 @@ cython_debug/
 # sampleCodes
 .sample
 
-docs/result_sample/
-docs/input_sample/
+docs/sample/

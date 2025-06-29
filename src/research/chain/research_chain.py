@@ -1,20 +1,27 @@
-from langgraph.types import Command
-from langchain_core.messages import HumanMessage
-from core.helper.runnable_retry import runnable_retry
-from research.agent.research_agent import research_agent
+from core.state.pipeline_state import PipelineState
+from core.state.research_state import ResearchState
+from research.func.research import research
+from research.func.additional_research import additional_research
 
-def research_chain(state):
+def research_chain(state: PipelineState):
     """
     調査チェーン
 
-    - 調査エージェントを呼び出す
+    - ユーザを見つけれそうなサイトで調査
+    - 見つけた各ユーザに関して追加で調査
     """
-    result = runnable_retry(research_agent).invoke(state)
+    research_state = ResearchState()
 
-    return Command(
-        update={
-            "messages": [
-                HumanMessage(content=result["messages"][-1].content, name="research_chain")
-            ]
-        },
-    )
+    # ユーザを見つけれそうなサイトで調査
+    state, research_state = research(state, research_state)
+    print("-----------research_chain-------------")
+    print(state)
+    print(research_state)
+
+    # 見つけた各ユーザに関して追加で調査
+    state = additional_research(state, research_state)
+    print("-----------additional_research-------------")
+    print(state)
+
+
+    return state

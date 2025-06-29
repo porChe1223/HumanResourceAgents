@@ -1,11 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt, wait_fixed
-from langchain_core.tools import tool
 from research.helper.clean_html import clean_html
 
-@tool
-def beautiful_soup_scraping(url: str) -> str:
+def beautiful_soup_scrape(url: str) -> str:
     """BeautifulSoupでWebスクレイピングする関数。
     
     Args:
@@ -31,7 +29,3 @@ def beautiful_soup_scraping(url: str) -> str:
         return result
     
     return scrape_with_retry()
-
-if __name__ == "__main__":
-    result = beautiful_soup_scraping("https://researchmap.jp/press_releases/press_releases/index/633014/research_area_discipline_number:A289/sort:PressRelease.publish_start/direction:DESC/limit:10?frame_id=1601185")
-    print(result)
