@@ -42,7 +42,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -189,7 +188,13 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# sampleCodes
-.sample
-
+# sampleData
 docs/sample/
+
+# AWS-CDK
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+.cdk.staging
+cdk.out
