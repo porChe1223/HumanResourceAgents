@@ -56,7 +56,7 @@ def additional_research(state: PipelineState, research_state: ResearchState):
             print("-----------research_result--------------")
             print(research_result)
             # 調査結果を追加
-            shaped_researchs[person] += "ああああああああ"
+            shaped_researchs[person] += "あ                            あ"
             shaped_researchs[person] +=  research_result["messages"][-1].content
             print("-----------shaped_researchs_later--------------")
             print(shaped_researchs)
