@@ -35,7 +35,7 @@ def research(state: PipelineState, research_state: ResearchState):
 
     # テスト用
     print("-----------mock_test--------------")
-    final_research_result = read_text("research/prompt/sample.txt")
+    final_research_result = read_text("../docs/sample/research/research_result.txt")
     research_state["research_result"] = final_research_result
     print(url_list)
     print("--------------------------------")
