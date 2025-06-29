@@ -1,4 +1,4 @@
 from langgraph.graph import MessagesState
 
 class ResearchState(MessagesState):
-    researchs: str = ""              # 調査結果
+    researchs: str = ""  # 追加調査結果
