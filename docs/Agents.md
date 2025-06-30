@@ -53,6 +53,12 @@
   調査した人材を評価軸に基づいてスコアリングし、その結果から今回の要件に有望な人材を推薦する。
   - 推薦エージェント
 
+### 保存 ( memory )
+人材情報を保存する。
+
+- **保存 ( memory )**
+  人材情報を、名前をキーとしたデータとして、DynamoDBに保存する。
+  - DynamoDB操作
 
 ## エージェント
 - 司令エージェント
@@ -73,11 +79,15 @@
 ## スクレイピング操作
 - BeautifalSoup4
 
+## DynamoDB操作
+- DynamoDBテーブル作成( 必要ならば )
+- DynamoDBデータハンドラー
+
 
 ## モデル
 - gpt-4.1-mini ( OpenAI API )
 - gemini-2.0-flash ( Google AI Studio )
-<!-- - Nova ( Amazon Bedrock ) -->
+- amazon-nova-lite ( Amazon Bedrock )
 
 
 ## セッションメモリ
@@ -85,8 +95,7 @@ LangGraphのState機能で管理
 
 
 ## 永続メモリ  
-個人情報を取り扱うので、コンプライアンス違反にならないか危惧。  
-するならDynamoDBを想定。  
+DynamoDBを採用。    
 
 
 ## フレームワーク
