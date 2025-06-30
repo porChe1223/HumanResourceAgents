@@ -1,5 +1,7 @@
 # 構成
 
+![構成図](image/architecture.png)
+
 ## 選定技術
 
 ### AI Agent
@@ -27,20 +29,20 @@ scrapyが気になる
 ### Nova ( Amazon Bedrock )
 AWS環境との相性が良く、今回BedrockのNovaモデルを無償で使わせてもらえるため使用する。
 
-### GPY ( OpenAI API )
+### GPT ( OpenAI API )
 たまたま購入済みの分のクレジットがあるので使用しようと思う。
 
 ### Gemini ( Google AI Studio )
 無料で提供されているGeminiモデルを用いようと思う。
 
-### Neo4j AuraDB <= 仮
+<!-- ### Neo4j AuraDB <= 仮
 可能であれば人材ネットワークの可視化も実現したい。  
-Neo4j AuraDBはグラフ構造を持つデータベースであり、人材ネットワークのグラフを直接表現できることを期待する。
+Neo4j AuraDBはグラフ構造を持つデータベースであり、人材ネットワークのグラフを直接表現できることを期待する。 -->
 
 ## 環境
 
 ### デプロイ
-AWSのECSを検討。( リソースを無料で使えるから。 )
+AWSのEC2を採用。
 
 ### CI / CD
 GitHub Actions採用。 ( 本リポジトリをGitHub上で管理しており、相性が良いから。 )

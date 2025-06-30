@@ -1,5 +1,6 @@
 requests
 beautifulsoup4
+boto3
 chainlit
 google-api-core
 langchain
